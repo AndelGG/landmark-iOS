@@ -7,7 +7,18 @@
 
 import Foundation
 
-var landmarks: [Landmark] = load("landmarkData.json")
+@Observable
+class ModelData {
+    var landmarks: [Landmark] = load("landmarkData.json")
+    var hikes: [Hike] = load("hikeData.json")
+    
+    func toggleFavorite(for landmark: Landmark) {
+        guard let index = landmarks.firstIndex(where: { $0.id == landmark.id }) else {
+            return
+        }
+        landmarks[index].isFavorite.toggle()
+    }
+}
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
