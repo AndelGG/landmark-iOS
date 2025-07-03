@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  CircleImage.swift
 //  PyHub
 //
 //  Created by Дмитрий Поповский on 2025-01-27.
@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CircleImage: View {
+    var image: Image
+    
     var body: some View {
-        Image("shpack")
+        image
             .clipShape(Circle())
             .overlay {
                 Circle().stroke(.white, lineWidth: 4)
@@ -19,5 +21,5 @@ struct CircleImage: View {
 }
 
 #Preview {
-    CircleImage()
+    CircleImage(image: Image(systemName: "star.fill"))
 }

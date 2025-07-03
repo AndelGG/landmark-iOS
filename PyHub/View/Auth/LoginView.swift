@@ -54,12 +54,39 @@ struct LoginView: View {
             .padding(.horizontal)
             .disabled(email.isEmpty || password.isEmpty)
             
+            Button(action: signInWithDemo) {
+                Text("Quick Demo Sign In")
+                    .font(.subheadline)
+                    .foregroundStyle(.blue)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue.opacity(0.1))
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
+            
             Button(action: { isRegistering.toggle() }) {
                 Text(isRegistering ? "Already have an account? Sign In" : "Don't have an account? Sign Up")
                     .font(.footnote)
                     .foregroundStyle(.blue)
             }
             .padding(.top, 10)
+            
+            VStack(spacing: 5) {
+                Text("Demo Account:")
+                    .font(.caption)
+                    .fontWeight(.medium)
+                Text("Email: demo@example.com")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                Text("Password: password123")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.top, 20)
+            .padding(.horizontal, 20)
+            .background(Color(UIColor.systemGray6))
+            .cornerRadius(8)
             
             Spacer()
         }
@@ -82,6 +109,12 @@ struct LoginView: View {
                 "Invalid email or password."
             showingAlert = true
         }
+    }
+    
+    private func signInWithDemo() {
+        email = "demo@example.com"
+        password = "password123"
+        authenticateUser()
     }
 }
 
