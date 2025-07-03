@@ -2,11 +2,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        LandmarkList()
+        AuthenticatedView()
     }
 }
 
 #Preview {
     ContentView()
         .environment(ModelData())
+        .environment(AuthenticationManager())
 }

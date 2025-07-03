@@ -10,11 +10,19 @@ import SwiftUI
 @main
 struct PyHubApp: App {
     @State private var modelData = ModelData()
+    @State private var authManager = AuthenticationManager()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(modelData)
+            Group {
+                if authManager.isAuthenticated {
+                    AuthenticatedView()
+                        .environment(modelData)
+                } else {
+                    LoginView()
+                }
+            }
+            .environment(authManager)
         }
     }
 }
